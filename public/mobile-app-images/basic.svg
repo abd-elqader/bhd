@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150px" height="120px" viewBox="0 0 150 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 74 Copy</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="150" height="120"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-74-Copy">
+            <g id="Group-44" transform="translate(45.000000, 30.000000)">
+                <g id="Group-55" fill="#F8F8F8">
+                    <rect id="Rectangle" x="0" y="0" width="60" height="60"></rect>
+                </g>
+                <text id="image---sallaicons" font-family="sallaicons" font-size="25" font-weight="normal" fill="#DDDDDD">
+                    <tspan x="18" y="41"></tspan>
+                </text>
+            </g>
+            <g id="Group-48-Copy-29">
+                <g id="Group-47">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle" fill="#FFFFFF" xlink:href="#path-1"></use>
+                    <g id="1521" mask="url(#mask-2)" fill="#FFFFFF" stroke="#BBBBBB">
+                        <g transform="translate(5.859375, -8.000000)" id="Path_4456">
+                            <path d="M25.8671875,1.21844633 L25.8671875,43.757588 L13.1835938,34.8705205 L0.5,43.757588 L0.5,1.21844633 L25.8671875,1.21844633 Z"></path>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-44" transform="translate(60.000000, 45.000000)"></g>
+            </g>
+        </g>
+    </g>
+</svg>

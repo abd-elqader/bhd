@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150px" height="120px" viewBox="0 0 150 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 73</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="150" height="120"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-73">
+            <g id="Group-44" transform="translate(45.000000, 30.000000)">
+                <g id="Group-55" fill="#F8F8F8">
+                    <rect id="Rectangle" x="0" y="0" width="60" height="60"></rect>
+                </g>
+                <text id="image---sallaicons" font-family="sallaicons" font-size="25" font-weight="normal" fill="#DDDDDD">
+                    <tspan x="18" y="41"></tspan>
+                </text>
+            </g>
+            <g id="Group-48-Copy-27">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Rectangle" fill="#FFFFFF" xlink:href="#path-1"></use>
+                <g id="Group-47" mask="url(#mask-2)"></g>
+                <g id="Group-44" mask="url(#mask-2)" fill="#FFFFFF" stroke="#DDDDDD">
+                    <g transform="translate(-28.000000, -28.000000)" id="Rectangle">
+                        <path d="M72.8986632,37.6996196 L102.6331,58.7542575 L-6.22419329,58.8612169 L22.6797731,38.3946263 L72.8986632,37.6996196 Z" transform="translate(48.202273, 48.280088) rotate(-45.000000) translate(-48.202273, -48.280088) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

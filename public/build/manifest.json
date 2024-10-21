@@ -1,0 +1,25 @@
+{
+  "resources/js/app.js": {
+    "file": "assets/app.5ddab983.js",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_echo.06fff839.js"
+    ]
+  },
+  "resources/js/bootstrap.js": {
+    "file": "assets/bootstrap.f1adcf0c.js",
+    "src": "resources/js/bootstrap.js",
+    "isEntry": true,
+    "imports": [
+      "_echo.06fff839.js"
+    ]
+  },
+  "_echo.06fff839.js": {
+    "file": "assets/echo.06fff839.js"
+  },
+  "resources/css\\app.css": {
+    "file": "assets/app.240484bc.css",
+    "src": "resources/css\\app.css"
+  }
+}

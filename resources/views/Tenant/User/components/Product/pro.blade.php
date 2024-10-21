@@ -1,0 +1,1 @@
+@livewire('product',['product_id' => $product_id,'product_page_num' => $product_page_num])

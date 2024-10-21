@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150px" height="120px" viewBox="0 0 150 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 73 Copy</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="150" height="120"></rect>
+        <filter id="filter-3">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.972549 0 0 0 0 0.972549 0 0 0 0 0.972549 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-73-Copy">
+            <g id="Group-48-Copy-27">
+                <g id="Group-47" fill="#FFFFFF">
+                    <rect id="Rectangle" x="-2.82334862e-14" y="0" width="149.006623" height="120"></rect>
+                </g>
+                <g id="Group-44" transform="translate(44.701987, 29.508197)">
+                    <g id="Group-55" fill="#F8F8F8">
+                        <rect id="Rectangle" x="0" y="0" width="59.602649" height="59.0163934"></rect>
+                    </g>
+                    <text id="image---sallaicons" font-family="sallaicons" font-size="25" font-weight="normal" fill="#DDDDDD">
+                        <tspan x="17.8807947" y="40.5"></tspan>
+                    </text>
+                </g>
+            </g>
+            <g id="Group-48-Copy-27">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Rectangle" fill="#FFFFFF" xlink:href="#path-1"></use>
+                <g filter="url(#filter-3)" id="Group-47">
+                    <g mask="url(#mask-2)"></g>
+                </g>
+                <g id="Group-44" mask="url(#mask-2)" fill="#FFFFFF" stroke="#BBBBBB">
+                    <g transform="translate(-6.000000, 7.868852)" id="Rectangle">
+                        <path d="M91.6664557,0.841988761 C92.0806685,0.841171906 92.4559988,1.00832528 92.7279802,1.27923605 C92.9999616,1.55014682 93.168594,1.92481499 93.169411,2.33700633 L93.169411,2.33700633 L93.1295234,21.5990382 C93.1286677,22.012067 92.9609225,22.3858822 92.690134,22.6566437 C92.4193454,22.9274053 92.0455136,23.0951133 91.6324847,23.0959279 L91.6324847,23.0959279 L1.17460851,23.2743168 L1.22071067,1.02035374 Z" transform="translate(47.173570, 12.056668) rotate(-360.000000) translate(-47.173570, -12.056668) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
