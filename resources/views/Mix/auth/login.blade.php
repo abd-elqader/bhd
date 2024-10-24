@@ -5,7 +5,7 @@
         <div class="auth-cover-wrapper bg-primary-100">
             <div class="auth-cover">
                 <div class="title text-center">
-                    <h1 class="text-primary mb-10">{{ __('Login') }}</h1>
+                    <h1 class="text-primary mb-10">{{__('website.login')}}</h1>
                 </div>
                 <div class="cover-image">
                     <img src="{{ public_asset('/images/auth/signin-image.svg') }}" alt="">

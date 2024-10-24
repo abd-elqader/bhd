@@ -24,28 +24,29 @@ class IndexController extends Controller
 {
     public function index()
     {
-        try{
-            visitor()->visit();
-        }catch (\Exception $e) {
-            $client = DB::connection('mysql')->table('clients')->where('domain_name',str_replace("https://", "",current(explode('.', url()->full()))))->first();
-            session()->put('data', (array)$client);
-            CreateDB($client->domain_name);
-            AssignAllPrivileges($client->domain_name);
-            CreateSubDomain($client->domain_name);
-            $tenant = Tenant::firstOrCreate(['id' => $client->domain_name],['id' => $client->domain_name, 'client_id' => $client->id]);
-            try{
-                $tenant->domains()->create(['domain' => $client->domain_name.'.'.env('APP_DOMAIN')]);
-            }catch (\Exception $e) {
-                
-            }
-        	\Artisan::call('tenants:migrate-fresh', [
-                '--tenants' => [$client->domain_name],
-            ]);
-            \Artisan::call('tenants:seed', [
-                '--tenants' => [$client->domain_name],
-                '--force' => true
-            ]);
-        }
+        // dd(visitor()->browser());
+        // try{
+        //     // visitor()->visit();
+        // }catch (\Exception $e) {
+        //     $client = DB::connection('mysql')->table('clients')->where('domain_name',str_replace("https://", "",current(explode('.', url()->full()))))->first();
+        //     session()->put('data', (array)$client);
+        //     CreateDB($client->domain_name);
+        //     AssignAllPrivileges($client->domain_name);
+        //     CreateSubDomain($client->domain_name);
+        //     $tenant = Tenant::firstOrCreate(['id' => $client->domain_name],['id' => $client->domain_name, 'client_id' => $client->id]);
+        //     try{
+        //         $tenant->domains()->create(['domain' => $client->domain_name.'.'.env('APP_DOMAIN')]);
+        //     }catch (\Exception $e) {
+
+        //     }
+        // 	\Artisan::call('tenants:migrate-fresh', [
+        //         '--tenants' => [$client->domain_name],
+        //     ]);
+        //     \Artisan::call('tenants:seed', [
+        //         '--tenants' => [$client->domain_name],
+        //         '--force' => true
+        //     ]);
+        // }
         $components = theme('Home');
 
         return view('Tenant.User.layout', compact('components'));
@@ -61,7 +62,7 @@ class IndexController extends Controller
         $components = array_flip($components);
         $components['login1'] = 'Login';
         $components = array_flip($components);
-        
+
         return view('Tenant.User.layout', compact('components'));
     }
 
@@ -70,13 +71,13 @@ class IndexController extends Controller
         if (auth('client')->user()) {
             return redirect()->route('client.home');
         }
-        
+
         $components = theme('Profile');
         $components['Profile'] = 'register1';
         $components = array_flip($components);
         $components['register1'] = 'Register';
         $components = array_flip($components);
-        
+
         return view('Tenant.User.layout', compact('components'));
     }
 
@@ -91,7 +92,7 @@ class IndexController extends Controller
         $components = array_flip($components);
         $components['fotget1'] = 'Forget';
         $components = array_flip($components);
-        
+
         return view('Tenant.User.layout', compact('components'));
     }
 

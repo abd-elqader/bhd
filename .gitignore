@@ -21,3 +21,5 @@ public/uploads
 public/Central
 storage/app/public
 public/Tenant/img
+storage/framework/sessions
+storage/logs/laravel.log

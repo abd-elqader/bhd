@@ -1,6 +1,6 @@
 <?php
 
-if (count(explode('.', $_SERVER['SERVER_NAME'])) > 2) {
+if (isset($_SERVER['SERVER_NAME']) && count(explode('.', $_SERVER['SERVER_NAME'])) > 2) {
     $tenant_id = explode('.', $_SERVER['SERVER_NAME'])[0];
     $asset_url =  '';
     $app_url =  '';

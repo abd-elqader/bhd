@@ -13,6 +13,7 @@ use App\Http\Controllers\Central\Admin\HomeController;
 use App\Http\Controllers\Central\Admin\PackageController;
 use App\Http\Controllers\Central\Admin\PackageDescController;
 use App\Http\Controllers\Central\Admin\StoresController;
+use App\Http\Controllers\Central\Admin\ServiceController;
 use App\Http\Controllers\Central\Admin\TenantsController;
 use App\Http\Controllers\Central\Admin\DeliveryController;
 use App\Http\Controllers\Mix\Admin\AdminsController;
@@ -50,6 +51,7 @@ Route::group(['middleware' => [ForceSSL::class]], function () {
                 Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
                 Route::any('website/statistics/{Tenant}', [TenantsController::class, 'statistics'])->name('website.statistics');
                 Route::any('clients/acceptTenant', [ClientsController::class, 'acceptTenant'])->name('clients.acceptTenant');
+                Route::get('dashboard/services/adminservices', [ServiceController::class, 'admin_index'])->name('services.adminservices');
                 Route::resources([
                     'admins' => AdminsController::class,
                     'agents' => AgentsController::class,
@@ -64,10 +66,11 @@ Route::group(['middleware' => [ForceSSL::class]], function () {
                     'imagetypes' => ImageTypeController::class,
                     'blogs' => BlogController::class,
                     'stores' => StoresController::class,
+                    'services' => ServiceController::class,
                     'countries' => CountryController::class,
                     'country.regions' => RegionController::class,
                     'country.region.cities' => CityController::class,
-    
+
                     'components' => ComponentController::class,
                     'websites' => TenantsController::class,
                     'features' => FeatureController::class,
@@ -81,7 +84,7 @@ Route::group(['middleware' => [ForceSSL::class]], function () {
                 ]);
                 Route::any('/blogs/uploadImages', [BlogController::class, 'uploadImages'])->name('blogs.uploadImages');
             });
-    
+
             Route::any('fullDefaultTheme/{id}', [DefaultThemeController::class, 'fullDefaultTheme'])->name('fullDefaultTheme'); //for theme pages of a theme
             Route::get('reports', [ReportController::class,'reports'])->name('reports');
             Route::get('reports/sales', [ReportController::class,'sales'])->name('reports.sales');
@@ -93,6 +96,6 @@ Route::group(['middleware' => [ForceSSL::class]], function () {
             Route::get('reports/products', [ReportController::class, 'test']);
             Route::Get('exportData', [ReportController::class, 'exportData'])->name('exportData');
         });
-        
+
     });
 });

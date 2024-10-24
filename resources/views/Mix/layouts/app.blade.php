@@ -20,7 +20,97 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    
+    {{-- services module style --}}
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css"
+        integrity="sha384-JvExCACAZcHNJEc7156QaHXTnQL3hQBixvj5RV5buE7vgnNEzzskDtx9NQ4p6BJe" crossorigin="anonymous">
+
+    <title>@yield('title')</title>
+    <style>
+        .card-title {
+            padding-top: 20%;
+        }
+
+        .mt-3 {
+            margin-top: 1rem !important;
+            position: absolute;
+            bottom: 5%;
+            left: 40%;
+        }
+
+        .card-body {
+            min-height: 250px;
+            background: #f9f9f9cc;
+
+        }
+
+        .circular-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1rem;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+        }
+
+        .circular-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            size: cover;
+        }
+
+        input,
+        textarea,
+        input::placeholder {
+            unicode-bidi: bidi-override;
+            direction: RTL;
+        }
+
+        .table {
+            direction: rtl
+        }
+
+        /* Extra small devices (phones, 600px and down) */
+        @media only screen and (max-width: 600px) {
+            .circular-image {
+                top: -20%;
+                left: 35%;
+            }
+
+            .row-cols-1>* {
+                margin-bottom: 8%;
+            }
+        }
+
+        /* Small devices (portrait tablets and large phones, 600px and up) */
+        @media only screen and (min-width: 600px) {
+            .circular-image {
+                top: -20%;
+                left: 35%;
+            }
+
+            .row-cols-md-2>* {
+                margin-bottom: 8%;
+            }
+        }
+
+        /* Large devices (laptops/desktops, 992px and up) */
+        @media only screen and (min-width: 992px) {
+            .circular-image {
+                top: -25%;
+                left: 30%;
+            }
+        }
+    </style> --}}
+    {{-- //////////////// --}}
     <style>
         @font-face {
           font-family: "LineIcons";
@@ -34,7 +124,7 @@
           font-style: normal;
         }
     </style>
-    
+
     <link rel="stylesheet" href="{{ public_asset(env('APP_URL') .'/css/lineicons.css') }}" />
     <link href='https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap' rel="stylesheet">
 
@@ -52,14 +142,14 @@
     @if(tenant())
         @php($PackageDetails = PackageDetails())
     @endif
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css" integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .note-editable ul{
           list-style: disc !important;
           list-style-position: inside !important;
         }
-        
+
         .note-editable ol {
           list-style: decimal !important;
           list-style-position: inside !important;
@@ -174,7 +264,7 @@
                         @lang('dashboard.expired_date') {{date('d/m/y',strtotime($PackageDetails->end_date))  }}
                     @else
                         <span class="text-danger">
-                            @lang('messages.Your package Date Expired Renew') 
+                            @lang('messages.Your package Date Expired Renew')
                         </span>
                     @endif
                 </div>
@@ -238,7 +328,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
     <script>
-        
+
         function DeleteSelected(table,id = 0) {
             event.preventDefault();
             var ids = [];
@@ -315,29 +405,29 @@
             let hrBox = document.getElementById("hr-box");
             let minBox = document.getElementById("min-box");
             let secBox = document.getElementById("sec-box");
-    
-    
+
+
             let endDate = new Date('{{ $PackageDetails->end_date }}');
             //Output value in milliseconds
             let endTime = endDate.getTime();
-    
+
             function countdown() {
                 let todayDate = new Date();
                 //Output value in milliseconds
                 let todayTime = todayDate.getTime();
-    
+
                 let remainingTime = endTime - todayTime;
-    
+
                 //60sec => 1000 milliseconds
                 let oneMin = 60 * 1000;
                 //1hr => 60 minutes
                 let oneHr = 60 * oneMin;
                 //1 day => 24 hours
                 let oneDay = 24 * oneHr;
-    
+
                 //Function to format number if it is single digit
                 let addZeroes = (num) => (num < 10 ? `0${num}` : num);
-    
+
                 //If end dat is before today date
                 if (endTime < todayTime) {
                     clearInterval(i);
@@ -351,7 +441,7 @@
                     let hrsLeft = Math.floor((remainingTime % oneDay) / oneHr);
                     let minsLeft = Math.floor((remainingTime % oneHr) / oneMin);
                     let secsLeft = Math.floor((remainingTime % oneMin) / 1000);
-    
+
                     //Displaying Valurs
                     dayBox.textContent = addZeroes(daysLeft);
                     hrBox.textContent = addZeroes(hrsLeft);
@@ -362,12 +452,12 @@
             let i = setInterval(countdown, 1000);
             countdown();
         </script>
-        
+
     @endif
-    
-        
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js" integrity="sha512-6F1RVfnxCprKJmfulcxxym1Dar5FsT/V2jiEUvABiaEiFWoQ8yHvqRM/Slf0qJKiwin6IDQucjXuolCfCKnaJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+
     <script>
 
         $(document).ready(function() {
@@ -376,11 +466,31 @@
                     tabsize: 2,
                     height: 300,
                 });
-        
+
 
             }
         });
     </script>
+    {{-- services module --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Validate image file type
+        document.getElementById('serviceForm').addEventListener('submit', function(event) {
+            const fileInput = document.getElementById('serviceImage');
+            const filePath = fileInput.value;
+            const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+            if (!allowedExtensions.exec(filePath)) {
+                alert('يرجى تحميل ملف صورة فقط (jpg, jpeg, png, gif)');
+                fileInput.value = '';
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
+    {{-- //////////// --}}
     @yield('js')
 </body>
 </html>

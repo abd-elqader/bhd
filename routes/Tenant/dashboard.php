@@ -40,7 +40,7 @@ use App\Http\Controllers\Tenant\Admin\{
     ReportController,
     SizeController,
     MobileController,
-    WeightController,
+    // WeightController,
     PackageController,
     DeliveryController
 };
@@ -52,8 +52,8 @@ use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 Route::middleware([InitializeTenancyByDomain::class, PreventAccessFromCentralDomains::class])->group(function () {
-    
-            
+
+
     Route::group(['prefix' => 'dashboard', 'as' => 'admin.'], function () {
         Route::any('login_wihout_form', [\App\Http\Controllers\Mix\Auth\LoginController::class, 'login_wihout_form'])->name('login_wihout_form');
         Auth::routes();
@@ -98,7 +98,7 @@ Route::middleware([InitializeTenancyByDomain::class, PreventAccessFromCentralDom
                 'additions' => AdditionsController::class,
                 'removes' => RemovesController::class,
                 'deliveries' => DelivryController::class,
-                'weights' => WeightController::class,
+                // 'weights' => WeightController::class,
                 'carts' => CartController::class,
                 'currencies' => CurrancyController::class,
                 'coupons' => CouponController::class,
@@ -112,8 +112,8 @@ Route::middleware([InitializeTenancyByDomain::class, PreventAccessFromCentralDom
 
 
             Route::get('mobile-app', [MobileController::class, 'index'])->name('mobile-app.index');
-            
-            
+
+
             Route::get('reports/sales', [ReportController::class,'sales'])->name('reports.sales');
             Route::get('reports/financial', [ReportController::class, 'financial'])->name('reports.financial');
             Route::get('reports/client', [ReportController::class, 'client'])->name('reports.client');

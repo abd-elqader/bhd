@@ -45,6 +45,7 @@
         @include('Mix.layouts.SidebarComponents.roles')
         @include('Mix.layouts.SidebarComponents.admins')
         @include('Mix.layouts.SidebarComponents.agents')
+        @include('Mix.layouts.SidebarComponents.services')
         @endrole
         @include('Mix.layouts.SidebarComponents.lang')
 
