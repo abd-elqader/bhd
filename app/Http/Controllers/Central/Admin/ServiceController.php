@@ -87,22 +87,22 @@ class ServiceController extends Controller
         // alert()->success(__('messages.addedSuccessfully'));
 
         // Prepare data to insert
-        $datatoinsert['title'] = $request->service_title;
-        $datatoinsert['description'] = $request->service_description;
-        $datatoinsert['price'] = $request->service_price;
+        // $datatoinsert['title'] = $request->service_title;
+        // $datatoinsert['description'] = $request->service_description;
+        // $datatoinsert['price'] = $request->service_price;
 
         // Handle image upload
-        if ($request->hasFile('service_image')) {
-            $datatoinsert['image'] = Upload::UploadFile($request->service_image , 'services');
-            // Store the image in the 'public' disk, under the 'services' folder
-            // $datatoinsert['image'] = $request->file('service_image')->store('services', 'public');
-        }
+        // if ($request->hasFile('service_image')) {
+        //     $datatoinsert['image'] = Upload::UploadFile($request->service_image ,'services');
+        //     // Store the image in the 'public' disk, under the 'services' folder
+        //     // $datatoinsert['image'] = $request->file('service_image')->store('services', 'public');
+        // }
         // if ($request->hasFile('service_image')) {
         //     $Feature->image = Upload::UploadFile($request->image, 'Services');
         // }
-
+        service::latest()->create(['image' => Upload::UploadFile($request['image'], 'services')] + $request->validated());
         // Save the service data into the database
-        service::create($datatoinsert);
+        // service::create($datatoinsert);
 
         // Redirect to the services page with a success message
         return redirect()->route('admin.services.adminservices')->with('success', 'The service was added successfully');
@@ -166,11 +166,11 @@ class ServiceController extends Controller
     public function update(UpdateServicesRequest $request, $id)
     {
         $data = service::find($id);
-        $data->title = $request->service_title;
-        $data->description = $request->service_description;
-        $data->price = $request->service_price;
-        if ($request->hasFile('service_image')) {
-            $data->image = $request->file('service_image')->store('services', 'public');
+        $data->title = $request->title;
+        $data->description = $request->description;
+        $data->price = $request->price;
+        if ($request->hasFile('image')) {
+            $data->image = $request->file('image')->store('services', 'public');
         }
         $data->save();
         return redirect()->route('admin.services.adminservices')->with('success', 'The service was updated successfully');

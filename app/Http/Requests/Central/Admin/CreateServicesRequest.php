@@ -24,10 +24,10 @@ class CreateServicesRequest extends FormRequest
     public function rules()
     {
         return [
-            "service_title" => "required",
-            "service_description" => "required",
-            "service_price" => "required",
-            "service_image" => "required",
+            "title" => "required",
+            "description" => "required",
+            "price" => "required",
+            "image" => "required",
         ];
     }
     public function messages()

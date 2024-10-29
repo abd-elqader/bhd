@@ -32,16 +32,21 @@
                             <td scope="row">{{ $item->title }}</td>
                             <td scope="row">{{ $item->description }}</td>
                             <td scope="row">{{ $item->price }}</td>
-                            <td scope="row"><img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}"
+                            <td scope="row"><img src="{{ asset('public' . $item->image) }}" alt="{{ $item->title }}"
                                     width="50px" height="30px" /></td>
                             <td scope="row">
                                 <a href="{{ route('admin.services.create') }}" class="btn btn-sm btn-success">
-                                    <i class="bi bi-plus-square"></i>
+                                    <i class="bi bi-plus-square">add</i>
                                 </a>
                                 <a href="{{ route('admin.services.edit', $item->id) }}" class="btn btn-sm btn-primary"><i
-                                        class="bi bi-pencil-square"></i></a>
-                                <a href="{{ route('admin.services.destroy', $item->id) }}" class="btn btn-sm btn-danger"><i
-                                        class="bi bi-trash"></i>ah</a>
+                                        class="bi bi-pencil-square"></i>edit</a>
+                                <form action="{{ route('admin.services.destroy', $item->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

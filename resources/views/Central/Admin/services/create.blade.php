@@ -12,29 +12,29 @@
             @csrf
             <div class="form-group">
                 <label for="serviceTitle">عنوان الخدمة</label>
-                <input name="service_title" type="text" class="form-control" id="serviceTitle"
+                <input name="title" type="text" class="form-control" id="serviceTitle"
                     placeholder="أدخل عنوان الخدمة" required>
-                @error('service_title')
+                @error('title')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="serviceDescription">وصف الخدمة</label>
-                <textarea name="service_description"class="form-control" id="serviceDescription" rows="3"
+                <textarea name="description"class="form-control" id="serviceDescription" rows="3"
                     placeholder="أدخل وصف الخدمة" required></textarea>
-                @error('service_description')
+                @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="servicePrice">سعر الخدمة</label>
                 <div class="input-group">
-                    <input name="service_price" type="number" class="form-control" id="servicePrice"
+                    <input name="price" type="number" class="form-control" id="servicePrice"
                         placeholder="أدخل سعر الخدمة" required data-decimal="2">
                     <div class="input-group-append">
                         <span class="input-group-text">BHD</span>
                     </div>
-                    @error('service_price')
+                    @error('price')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
@@ -42,10 +42,10 @@
             <div class="form-group">
                 <label for="serviceImage">صورة الخدمة</label>
                 <div class="custom-file">
-                    <input name="service_image" type="file" class="custom-file-input" id="serviceImage" accept="image/*"
+                    <input name="image" type="file" class="custom-file-input" id="serviceImage" accept="image/*"
                         required>
                     <label class="custom-file-label" for="serviceImage" data-browse="استعراض">اختر صورة</label>
-                    @error('service_image')
+                    @error('image')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
