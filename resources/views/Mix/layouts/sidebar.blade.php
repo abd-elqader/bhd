@@ -8,6 +8,7 @@
         @include('Mix.layouts.SidebarComponents.themes')
         @include('Mix.layouts.SidebarComponents.more')
         @include('Mix.layouts.SidebarComponents.renew_packages')
+        @include('Mix.layouts.SidebarComponents.services_for_customer')
         @include('Mix.layouts.SidebarComponents.categories')
         @include('Mix.layouts.SidebarComponents.products')
         @include('Mix.layouts.SidebarComponents.orders')

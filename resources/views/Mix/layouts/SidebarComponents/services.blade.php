@@ -6,7 +6,7 @@
         <span class="text">{{ __('dashboard.services') }}</span>
     </a>
     <ul id="services" class="dropdown-nav mx-4 collapse" style="">
-        <li><a href="{{ route('admin.services.index') }}">{{ __('messages.viewAll') }}</a></li>
+        <li><a href="{{ route('admin.services.adminservices') }}">{{ __('messages.viewAll') }}</a></li>
         <li><a href="{{ route('admin.services.create') }}">{{ __('messages.add') }}</a></li>
     </ul>
 </li>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Central\Admin\CreateServicesRequest;
 use App\Http\Requests\Central\Admin\UpdateServicesRequest;
 use App\Models\Central\Service;
+use App\Models\Central\ServiceUser;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -58,10 +59,13 @@ class ServiceController extends Controller
         //         })
         //         ->toJson();
         // }
-        $data = service::select('id', 'title', 'description', 'price', 'image')->paginate(8);
-// dd($data);
-        return view('Central.Admin.services.services', ['data' => $data]);
+        // dd($data);
+        $Subscriptions = ServiceUser::latest()->with('Service')->where('client_id',tenant()->client_id)->get();
+        $Services = ServiceUser::latest()->paginate(8);
+        return view('Tenant.Admin.services.services',compact('Services','Subscriptions'));
     }
+
+
 
     public function admin_index()
     {
@@ -89,9 +93,13 @@ class ServiceController extends Controller
 
         // Handle image upload
         if ($request->hasFile('service_image')) {
+            $datatoinsert['image'] = Upload::UploadFile($request->service_image , 'services');
             // Store the image in the 'public' disk, under the 'services' folder
-            $datatoinsert['image'] = $request->file('service_image')->store('adminservices', 'public');
+            // $datatoinsert['image'] = $request->file('service_image')->store('services', 'public');
         }
+        // if ($request->hasFile('service_image')) {
+        //     $Feature->image = Upload::UploadFile($request->image, 'Services');
+        // }
 
         // Save the service data into the database
         service::create($datatoinsert);
@@ -162,7 +170,7 @@ class ServiceController extends Controller
         $data->description = $request->service_description;
         $data->price = $request->service_price;
         if ($request->hasFile('service_image')) {
-            $data->image = $request->file('service_image')->store('adminservices', 'public');
+            $data->image = $request->file('service_image')->store('services', 'public');
         }
         $data->save();
         return redirect()->route('admin.services.adminservices')->with('success', 'The service was updated successfully');

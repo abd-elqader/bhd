@@ -42,6 +42,7 @@ use App\Http\Controllers\Tenant\Admin\{
     MobileController,
     // WeightController,
     PackageController,
+    ServiceController,
     DeliveryController
 };
 
@@ -74,6 +75,7 @@ Route::middleware([InitializeTenancyByDomain::class, PreventAccessFromCentralDom
             Route::any('/orderStatus', [OrderController::class, 'changeStatus'])->name('orderStatus');
             Route::any('/orders/{method?}', [OrderController::class, 'index'])->name('orders');
             Route::any('/settings/{type?}', [SettingController::class, 'index'])->name('settings');
+            Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
             Route::resources([
                 'admins' => AdminsController::class,
                 'agents' => AgentsController::class,
@@ -107,6 +109,7 @@ Route::middleware([InitializeTenancyByDomain::class, PreventAccessFromCentralDom
                 'orders' => OrderController::class,
                 'addresses' => AddressController::class,
                 'packages' => PackageController::class,
+                'services' => ServiceController::class,
                 'delivery/company' => DeliveryController::class,
             ]);
 

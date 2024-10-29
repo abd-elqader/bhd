@@ -51,7 +51,7 @@ Route::group(['middleware' => [ForceSSL::class]], function () {
                 Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
                 Route::any('website/statistics/{Tenant}', [TenantsController::class, 'statistics'])->name('website.statistics');
                 Route::any('clients/acceptTenant', [ClientsController::class, 'acceptTenant'])->name('clients.acceptTenant');
-                Route::get('dashboard/services/adminservices', [ServiceController::class, 'admin_index'])->name('services.adminservices');
+                Route::get('services/adminservices', [ServiceController::class, 'admin_index'])->name('services.adminservices');
                 Route::resources([
                     'admins' => AdminsController::class,
                     'agents' => AgentsController::class,
