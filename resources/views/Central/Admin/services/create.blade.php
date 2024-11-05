@@ -3,8 +3,6 @@
 @section('title')
     اضافة خدمة
 @endsection
-
-
 @section('content')
     <div class="container mt-5 text-left">
         <h2 class="mb-4">إضافة خدمة جديدة</h2>

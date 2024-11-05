@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers\Central\Admin;
-
 use App\Helper\Upload;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Central\Admin\CreateServicesRequest;
@@ -10,7 +8,6 @@ use App\Models\Central\Service;
 use App\Models\Central\ServiceUser;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-
 class ServiceController extends Controller
 {
     public function __construct()
@@ -23,49 +20,16 @@ class ServiceController extends Controller
 
     public function index(Request $request)
     {
-        // if ($request->ajax()) {
-        //     $Models = Stores::latest();
-        //     if ($request->type) {
-        //         $Models = $Models->where('type_id', $request->type);
-        //     }
-
-        //     return DataTables::of($Models)
-        //         ->addColumn('action', function ($Model) {
-        //             return '<a href="'.route('admin.stores.show', $Model).'"><i class="fas fa-eye"></i></a>
-        //                     <a href="'.route('admin.stores.edit', $Model).'"><i class="fa-solid fa-pen-to-square"></i></a>
-        //                     <form class="formDelete" method="POST" action="'.route('admin.stores.destroy', $Model).'">
-        //                         '.csrf_field().'
-        //                         <input name="_method" type="hidden" value="DELETE">
-        //                         <button type="button" class="btn btn-flat show_confirm" data-toggle="tooltip" title="Delete">
-        //                             <i class="fa-solid fa-eraser"></i>
-        //                         </button>
-        //                     </form>';
-        //         })
-        //         ->addColumn('image', function ($Model) {
-        //             return '<img style="height: 100px" src="'.$Model['image'].'" alt="IMG" width="150">';
-        //         })
-
-        //         ->editColumn('status', function ($Model) {
-        //             if ($Model->status) {
-        //                 return '<label data-id="'.$Model->id.'" onclick="toggleswitch('.$Model->id.',\'stores\')" class="switch toggleswitch bg-dark"><input id="checkbox'.$Model->id.'" type="checkbox" checked ><span class="slider"></span></label>';
-        //             } else {
-        //                 return '<label data-id="'.$Model->id.'" onclick="toggleswitch('.$Model->id.',\'stores\')" class="switch toggleswitch bg-dark"><input id="checkbox'.$Model->id.'" type="checkbox" ><span class="slider"></span></label>';
-        //             }
-        //         })
-        //         ->escapeColumns('action', 'checkbox', 'image')
-        //         ->addIndexColumn()
-        //         ->addColumn('checkbox', function ($Model) {
-        //             return '<input type="checkbox" class="DTcheckbox" value="'.$Model->id.'">';
-        //         })
-        //         ->toJson();
-        // }
-        // dd($data);
-        $Subscriptions = ServiceUser::latest()->with('Service')->where('client_id',tenant()->client_id)->get();
+        $Subscriptions = ServiceUser::latest()->with('Service')->get();
         $Services = ServiceUser::latest()->paginate(8);
         return view('Tenant.Admin.services.services',compact('Services','Subscriptions'));
     }
 
-
+    public function get_subscribers(Request $request)
+    {
+        $data = ServiceUser::with('Client','Service')->paginate(8);
+        return view('Central.Admin.services.service-subscribers-index', ['data' => $data]);
+    }
 
     public function admin_index()
     {
@@ -73,11 +37,23 @@ class ServiceController extends Controller
         return view('Central.Admin.services.adminservice', ['data' => $data]);
     }
 
+    public function service_subscriber()
+    {
+        return view('Central.Admin.services.service-subscriber');
+    }
+
+    public function change_paid_state($id)
+    {
+        $data = ServiceUser::findOrFail($id);
+        $newPaid = $data->paid ? 0 : 1;
+        $data->update(['paid' => $newPaid ]);
+        return redirect()->back()->with('success', 'Paid status toggled successfully.');
+    }
+
     public function create(Request $request)
     {
         return view('Central.Admin.services.create');
     }
-
     public function store(CreateServicesRequest $request)
     {
         // Stores::latest()->create([
@@ -85,44 +61,32 @@ class ServiceController extends Controller
         //     'image' => Upload::UploadFile($request['image'], 'Stores'),
         // ] + $request->validated());
         // alert()->success(__('messages.addedSuccessfully'));
-
         // Prepare data to insert
-        // $datatoinsert['title'] = $request->service_title;
-        // $datatoinsert['description'] = $request->service_description;
+        // $datatoinsert['title'] = strip_tags($request->service_title);
+        // $datatoinsert['description'] = strip_tags($request->service_description);
         // $datatoinsert['price'] = $request->service_price;
-
         // Handle image upload
         // if ($request->hasFile('service_image')) {
-        //     $datatoinsert['image'] = Upload::UploadFile($request->service_image ,'services');
         //     // Store the image in the 'public' disk, under the 'services' folder
-        //     // $datatoinsert['image'] = $request->file('service_image')->store('services', 'public');
-        // }
-        // if ($request->hasFile('service_image')) {
-        //     $Feature->image = Upload::UploadFile($request->image, 'Services');
+        //     $datatoinsert['image'] = Upload::UploadFile($request->service_image , 'services');
         // }
         service::latest()->create(['image' => Upload::UploadFile($request['image'], 'services')] + $request->validated());
         // Save the service data into the database
         // service::create($datatoinsert);
-
         // Redirect to the services page with a success message
         return redirect()->route('admin.services.adminservices')->with('success', 'The service was added successfully');
-
         // return redirect()->back();
     }
-
     // public function show($id)
     // {
     //     $Store = Stores::latest()->findOrFail($id);
     //     return view('Central.Admin.stores.show', compact('Store'));
     // }
-
     // public function edit($id, Request $request)
     // {
     //     $Store = Stores::latest()->findOrFail($id);
-
     //     return view('Central.Admin.stores.edit', compact('Store'));
     // }
-
     // public function update(UpdateStoresRequest $request, $id)
     // {
     //     $Store = Stores::latest()->findOrFail($id);
@@ -146,18 +110,14 @@ class ServiceController extends Controller
     //         $Store->update($request->validated());
     //     }
     //     alert()->success(__('messages.updatedSuccessfully'));
-
     //     return redirect()->back();
     // }
-
     // public function destroy($id)
     // {
     //     Stores::latest()->where('id', $id)->delete();
     //     alert()->success(__('messages.DeletedSuccessfully'));
-
     //     return redirect()->back();
     // }
-
     public function edit($id)
     {
         $data = service::find($id);
@@ -165,14 +125,24 @@ class ServiceController extends Controller
     }
     public function update(UpdateServicesRequest $request, $id)
     {
-        $data = service::find($id);
-        $data->title = $request->title;
-        $data->description = $request->description;
-        $data->price = $request->price;
+        // dd($request);
+        $data = Service::latest()->findOrFail($id);
         if ($request->hasFile('image')) {
-            $data->image = $request->file('image')->store('services', 'public');
+            Upload::deleteImage($data->image);
+            $data->update([
+                'image' => Upload::UploadFile($request['image'], 'services'),
+            ] + $request->validated());
+        } else {
+            $data->update($request->validated());
         }
-        $data->save();
+        // $data = service::find($id);
+        // $data->title = strip_tags($request->title);
+        // $data->description = strip_tags($request->description);
+        // $data->price = $request->price;
+        // if ($request->hasFile('image')) {
+        //     $data->image = $request->file('image')->store('services', 'public');
+        // }
+        // $data->save();
         return redirect()->route('admin.services.adminservices')->with('success', 'The service was updated successfully');
     }
     public function destroy($id)
@@ -180,7 +150,6 @@ class ServiceController extends Controller
         service::find($id)->delete();
         return redirect()->route('admin.services.adminservices')->with('success', 'The service was deleted successfully');
     }
-
     public function analytics()
     {
         $data = service::select('id', 'title', 'description', 'price', 'image')->paginate(8);

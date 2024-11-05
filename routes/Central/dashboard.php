@@ -52,6 +52,8 @@ Route::group(['middleware' => [ForceSSL::class]], function () {
                 Route::any('website/statistics/{Tenant}', [TenantsController::class, 'statistics'])->name('website.statistics');
                 Route::any('clients/acceptTenant', [ClientsController::class, 'acceptTenant'])->name('clients.acceptTenant');
                 Route::get('services/adminservices', [ServiceController::class, 'admin_index'])->name('services.adminservices');
+                Route::get('services/service-subscriber', [ServiceController::class, 'get_subscribers'])->name('services.service-subscriber');
+                Route::post('services/active-switch/{id}', [ServiceController::class, 'change_paid_state'])->name('services.active-switch');
                 Route::resources([
                     'admins' => AdminsController::class,
                     'agents' => AgentsController::class,

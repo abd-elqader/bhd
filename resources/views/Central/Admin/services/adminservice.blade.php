@@ -1,10 +1,8 @@
 @extends('Mix.layouts.app')
 @section('pagetitle', __('dashboard.services'))
-
 @section('title')
     الخدمات
 @endsection
-
 @section('content')
     @if (Session::has('success'))
         <div class="alert alert-success" role="alert">
@@ -36,10 +34,12 @@
                                     width="50px" height="30px" /></td>
                             <td scope="row">
                                 <a href="{{ route('admin.services.create') }}" class="btn btn-sm btn-success">
-                                    <i class="bi bi-plus-square">add</i>
+                                    <i class="bi bi-plus-square"></i>add
                                 </a>
                                 <a href="{{ route('admin.services.edit', $item->id) }}" class="btn btn-sm btn-primary"><i
                                         class="bi bi-pencil-square"></i>edit</a>
+                                <!--<a href="{{ route('admin.services.destroy', $item->id) }}" class="btn btn-sm btn-danger"><i-->
+                                <!--        class="bi bi-trash"></i>ah</a>-->
                                 <form action="{{ route('admin.services.destroy', $item->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')

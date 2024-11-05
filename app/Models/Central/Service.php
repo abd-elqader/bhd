@@ -9,4 +9,9 @@ class Service extends BaseModel
     protected $connection = 'mysql';
     protected $guarded = [];
 
+    public function users()
+    {
+        return $this->hasMany(ServiceUser::class);
+    }
+
 }

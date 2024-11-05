@@ -54,7 +54,7 @@
                         <div class="card-body shadow-sm">
                             <div class="circular-image">
                                 {{-- Update the image path to point to the storage location --}}
-                                <img src="{{ $service->image }}" alt="{{ $service->title }}" />
+                                <img src="{{ $service->image }}" alt="{{ $service->title }}" width="200" height="200"/>
                                 {{-- <img src="{{ $Store->image }}" alt="IMG" class="img-thumbnail rounded mx-auto" style="max-width: 300px"> --}}
                             </div>
                             <h4 class="card-title">{{ $service->title }}</h4>

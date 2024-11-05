@@ -9,4 +9,3 @@
         <li><a href="{{ route('admin.services.index') }}">{{ __('messages.viewAll') }}</a></li>
     </ul>
 </li>
-

@@ -1,10 +1,9 @@
-@extends('Mix.layouts.app')
-@section('pagetitle', __('dashboard.online_stores'))
 
+@extends('Mix.layouts.app')
+@section('pagetitle', __('dashboard.services'))
 @section('title')
     الخدمات
 @endsection
-
 @section('content')
     <div class="container mt-5 ">
         <h2 class="text-center mb-5">خدماتنا المتميزة</h2>

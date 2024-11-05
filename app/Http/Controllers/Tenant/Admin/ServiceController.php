@@ -15,7 +15,8 @@ class ServiceController extends Controller
     public function index()
     {
         $Subscriptions = ServiceUser::latest()->with('Service')->where('client_id',tenant()->client_id)->get();
-        $Services = Service::latest()->paginate();
+        // dd($Subscriptions);
+        $Services = Service::latest()->with('users')->paginate();
         return view('Tenant.Admin.services.index',compact('Services','Subscriptions'));
     }
 
@@ -30,9 +31,10 @@ class ServiceController extends Controller
         $IndividualDomain = $Client->domain ? setting('IndividualDomain') : 0;
         $price = (float) $Service->price() + (float) $IndividualDomain;
         if ($price > 0) {
-            ServiceUser::create([
+            ServiceUser::updateOrCreate([
                 'service_id' => $Service->id,
-                'client_id' => $Client->id,
+                'client_id' => $Client->id
+                ],[
                 'start_date' => now(),
                 'end_date' => now()->addDays($Service->days),
                 'paid' => 0,
